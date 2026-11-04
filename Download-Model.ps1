@@ -10,7 +10,14 @@ function Save-Status($state, $detail) {
 try {
     if (-not (Test-Path -LiteralPath $target)) {
         Save-Status 'downloading' 'Resumable download of the pinned model revision.'
-        & curl.exe --fail --location --retry 5 --retry-delay 3 --continue-at - --output $partial $model.url
+        for ($attempt = 1; $attempt -le 10; $attempt++) {
+            & curl.exe --fail --location --retry 5 --retry-delay 3 --continue-at - --output $partial $model.url
+            if ($LASTEXITCODE -eq 0) { break }
+            if ($attempt -lt 10) {
+                Save-Status 'downloading' "Connection interrupted; resuming existing bytes (attempt $($attempt + 1)/10)."
+                Start-Sleep -Seconds 5
+            }
+        }
         if ($LASTEXITCODE -ne 0) { throw "Download failed: curl exit $LASTEXITCODE. Run this script again to resume." }
         $candidate = $partial
     } else { $candidate = $target }
