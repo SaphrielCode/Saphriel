@@ -1,9 +1,0 @@
-﻿{
-    "filename":  "llama-b11960-bin-win-cpu-x64.zip",
-    "release":  "b11960",
-    "source":  "https://github.com/ggml-org/llama.cpp/releases/download/b11960/llama-b11960-bin-win-cpu-x64.zip",
-    "size_bytes":  24407745,
-    "sha256":  "73f962f82850d244db47eaacb9d913637027b82399124324298576d58c5f4287",
-    "extracted_to":  "C:\\AI\\llama.cpp",
-    "extracted_files_verified":  52
-}
