@@ -10,7 +10,10 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
-parser.add_argument("--no-repack", action="store_true", help="Disable the engine's CPU weight repacking for this comparison.")
+repacking = parser.add_mutually_exclusive_group()
+repacking.add_argument("--no-repack", dest="no_repack", action="store_true", help="Disable CPU weight repacking (default).")
+repacking.add_argument("--repack", dest="no_repack", action="store_false", help="Explicitly enable repacking for a comparison.")
+parser.set_defaults(no_repack=True)
 args = parser.parse_args()
 label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
 OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
