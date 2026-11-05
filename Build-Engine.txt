@@ -15,3 +15,5 @@ The optional embedded web UI could not be downloaded during this build; the comm
 
 Local source patch: LLAMA_MMAP_PREFETCH=0 disables eager mapped-weight prefetch. Run-Olmo.cmd selects this by default. Set it to 1 explicitly to restore prefetch. Weights and numerical operations are unchanged.
 
+
+Diagnostic only: SAPHRIEL_INIT_STAGES=1 adds a fixed five-second post-threadpool pause and stage markers. Normal launch does not set it. The monitoring option --pause-init activates it for a bounded test.

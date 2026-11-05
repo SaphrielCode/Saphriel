@@ -63,8 +63,8 @@
                   },
                   {
                       "name":  "llama-common.dll",
-                      "size_bytes":  8864768,
-                      "sha256":  "d0d90ec12d5776ba4c7fbee068e186bcdb3cb3d82e7655ed54dad30b7ecc8ac1"
+                      "size_bytes":  8865792,
+                      "sha256":  "42734a20751d9726de81b9bed032d3ae67f4069bbc3d1772f353c8018fbc18f4"
                   },
                   {
                       "name":  "llama-quantize-impl.dll",
@@ -97,5 +97,5 @@
                       "sha256":  "7adc6022d87b4382d735c57fe08ec70f7e095d730b8c171a5c218a512482c4fb"
                   }
               ],
-    "local_patch":  "LLAMA_MMAP_PREFETCH runtime control; upstream base b11960"
+    "local_patch":  "LLAMA_MMAP_PREFETCH runtime control plus optional SAPHRIEL_INIT_STAGES diagnostic; upstream base b11960"
 }

@@ -19,6 +19,7 @@ parser.set_defaults(no_repack=True)
 parser.add_argument("--no-warmup", action="store_true", help="Skip engine warmup for loading-stage diagnosis.")
 parser.add_argument("--trace-loading", action="store_true", help="Enable stage logs and read-only resident-page attribution.")
 parser.add_argument("--prefetch", choices=("on", "off"), default="off", help="Mapped-model prefetch control (default off) in the patched engine.")
+parser.add_argument("--pause-init", action="store_true", help="Enable a five-second diagnostic pause after threadpool initialization and stage markers.")
 args = parser.parse_args()
 label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
 if args.no_warmup:
@@ -27,6 +28,8 @@ if args.trace_loading:
     label = "olmo_loading_trace_"
 if args.prefetch == "off":
     label = "olmo_no_prefetch_"
+if args.pause_init:
+    label = "olmo_init_pause_"
 OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
 OUT.mkdir(parents=True, exist_ok=False)
 kernel = ct.WinDLL("kernel32", use_last_error=True)
@@ -155,6 +158,7 @@ manifest = {"command": command, "model": model, "prior_model_verification": json
     "warmup": "disabled" if args.no_warmup else "engine default enabled", "weight_repacking": not args.no_repack,
     "resident_page_attribution": args.trace_loading, "initial_memory": system_memory(),
     "mapped_model_prefetch": args.prefetch,
+    "initialization_pause_seconds": 5 if args.pause_init else 0,
     "paging_scope": "System-wide counters include unrelated programs; process faults include soft faults.",
     "counter_errors": counter_errors, "process_scope": "Runner and all observed descendants; working-set sum can double-count shared pages.",
     "cache_state": "Uncontrolled Windows file cache; not claimed to be cold."}
@@ -167,6 +171,7 @@ low_count = 0
 monitor_error = None
 with (OUT / "stdout.txt").open("wb") as stdout, (OUT / "stderr.txt").open("wb") as stderr:
     environment = dict(os.environ, LLAMA_MMAP_PREFETCH="0" if args.prefetch == "off" else "1")
+    environment["SAPHRIEL_INIT_STAGES"] = "1" if args.pause_init else "0"
     process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, env=environment)
     def stop_tree():
         owned = descendants(process.pid)
