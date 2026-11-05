@@ -1,0 +1,12 @@
+{
+  "stop_reason": "process_exit",
+  "exit_code": 1,
+  "monitor_error": "OSError(22, 'A required privilege is not held by the client.', None, 1314)",
+  "wall_seconds": 0.13635419999991427,
+  "sample_count": 0,
+  "peak_sampled_tree_working_set_bytes": 0,
+  "peak_private_bytes": 0,
+  "minimum_available_ram_bytes": null,
+  "last_sample": null,
+  "counter_errors": {}
+}

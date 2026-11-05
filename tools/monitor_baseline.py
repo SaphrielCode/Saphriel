@@ -20,7 +20,11 @@ parser.add_argument("--no-warmup", action="store_true", help="Skip engine warmup
 parser.add_argument("--trace-loading", action="store_true", help="Enable stage logs and read-only resident-page attribution.")
 parser.add_argument("--prefetch", choices=("on", "off"), default="off", help="Mapped-model prefetch control (default off) in the patched engine.")
 parser.add_argument("--pause-init", action="store_true", help="Enable a five-second diagnostic pause after threadpool initialization and stage markers.")
+parser.add_argument("--chat-template-file", type=Path, help="Explicit local chat template override.")
+parser.add_argument("--working-set-gib", type=float, help="Experimental Windows hard resident-memory cap per process (1-8 GiB).")
 args = parser.parse_args()
+if args.working_set_gib is not None and not 1 <= args.working_set_gib <= 8:
+    parser.error("--working-set-gib must be between 1 and 8")
 label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
 if args.no_warmup:
     label = "olmo_no_warmup_"
@@ -30,6 +34,8 @@ if args.prefetch == "off":
     label = "olmo_no_prefetch_"
 if args.pause_init:
     label = "olmo_init_pause_"
+if args.working_set_gib:
+    label = "olmo_resident_cap_"
 OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
 OUT.mkdir(parents=True, exist_ok=False)
 kernel = ct.WinDLL("kernel32", use_last_error=True)
@@ -73,6 +79,7 @@ kernel.OpenProcess.argtypes = [wt.DWORD, wt.BOOL, wt.DWORD]
 kernel.OpenProcess.restype = wt.HANDLE
 kernel.CloseHandle.argtypes = [wt.HANDLE]
 kernel.TerminateProcess.argtypes = [wt.HANDLE, wt.UINT]
+kernel.SetProcessWorkingSetSizeEx.argtypes = [wt.HANDLE, ct.c_size_t, ct.c_size_t, wt.DWORD]
 
 
 def descendants(root_pid):
@@ -152,6 +159,8 @@ if args.no_repack:
     command.append("--no-repack")
 if args.no_warmup:
     command.append("--no-warmup")
+if args.chat_template_file:
+    command.extend(["--chat-template-file", str(args.chat_template_file.resolve())])
 manifest = {"command": command, "model": model, "prior_model_verification": json.loads(
     (ROOT / "models/download-status.json").read_text(encoding="utf-8-sig")),
     "time_limit_seconds": 300, "low_available_ram_bytes": 512 * 1024 * 1024,
@@ -159,6 +168,7 @@ manifest = {"command": command, "model": model, "prior_model_verification": json
     "resident_page_attribution": args.trace_loading, "initial_memory": system_memory(),
     "mapped_model_prefetch": args.prefetch,
     "initialization_pause_seconds": 5 if args.pause_init else 0,
+    "per_process_working_set_limit_bytes": int(args.working_set_gib * 2**30) if args.working_set_gib else None,
     "paging_scope": "System-wide counters include unrelated programs; process faults include soft faults.",
     "counter_errors": counter_errors, "process_scope": "Runner and all observed descendants; working-set sum can double-count shared pages.",
     "cache_state": "Uncontrolled Windows file cache; not claimed to be cold."}
@@ -184,16 +194,25 @@ with (OUT / "stdout.txt").open("wb") as stdout, (OUT / "stderr.txt").open("wb") 
                     kernel.CloseHandle(handle)
         process.wait(timeout=30)
     try:
+        capped_pids = set()
         with (OUT / "telemetry.jsonl").open("w", encoding="utf-8") as trace:
             while process.poll() is None:
                 sample = {"elapsed_seconds": time.perf_counter() - start, **system_memory()}
                 sample["processes"] = []
                 for pid, name in descendants(process.pid).items():
-                    handle = kernel.OpenProcess(0x410, False, pid)
+                    handle = kernel.OpenProcess(0x510 if args.working_set_gib else 0x410, False, pid)
                     if not handle:
+                        if args.working_set_gib:
+                            raise ct.WinError(ct.get_last_error())
                         continue
                     record = {"pid": pid, "name": name}
                     try:
+                        if args.working_set_gib and pid not in capped_pids:
+                            limit = manifest["per_process_working_set_limit_bytes"]
+                            if not kernel.SetProcessWorkingSetSizeEx(handle, 1024 * 1024, limit, 0x6):
+                                raise ct.WinError(ct.get_last_error())
+                            capped_pids.add(pid)
+                        record["resident_cap_applied"] = pid in capped_pids
                         pm = ProcessMemory()
                         pm.cb = ct.sizeof(pm)
                         if psapi.GetProcessMemoryInfo(handle, ct.byref(pm), pm.cb):

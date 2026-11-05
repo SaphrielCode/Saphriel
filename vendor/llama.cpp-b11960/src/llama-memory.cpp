@@ -2,11 +2,19 @@
 
 #include "llama-ext.h"
 #include "llama-io.h"
+#include "llama-kv-cache.h"
+#include "llama-kv-cache-iswa.h"
 
 #include <set>
 #include <stdexcept>
 #include <string>
+#include <typeinfo>
 #include <vector>
+
+bool llama_memory_has_partial_seq_rm(const llama_memory_t mem) {
+    // Exact types prevent an unknown derived implementation from inheriting this guarantee.
+    return mem && (typeid(*mem) == typeid(llama_kv_cache) || typeid(*mem) == typeid(llama_kv_cache_iswa));
+}
 
 llama_memory_status llama_memory_status_combine(llama_memory_status s0, llama_memory_status s1) {
     bool has_update = false;

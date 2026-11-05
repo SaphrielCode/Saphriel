@@ -1,0 +1,52 @@
+{
+  "stop_reason": "process_exit",
+  "exit_code": 0,
+  "monitor_error": null,
+  "wall_seconds": 245.32179949999954,
+  "sample_count": 113,
+  "peak_sampled_tree_working_set_bytes": 4294979584,
+  "peak_private_bytes": 833609728,
+  "minimum_available_ram_bytes": 3647254528,
+  "last_sample": {
+    "elapsed_seconds": 243.08243479999874,
+    "available_ram_bytes": 4207431680,
+    "total_ram_bytes": 14861852672,
+    "system_commit_bytes": 16430706688,
+    "processes": [
+      {
+        "pid": 27816,
+        "name": "llama-cli.exe",
+        "resident_cap_applied": true,
+        "working_set_bytes": 4294942720,
+        "peak_working_set_bytes": 4295020544,
+        "private_bytes": 833609728,
+        "page_fault_count": 46532136,
+        "process_read_bytes": 3644088,
+        "process_write_bytes": 589085,
+        "cpu_seconds": 576.671875,
+        "residency": {
+          "resident_bytes": {
+            "model_file": 0,
+            "private": 3760128,
+            "image": 3796992,
+            "other_mapped": 8192,
+            "unknown": 0
+          },
+          "total_enumerated_resident_bytes": 7565312,
+          "measurement_seconds": 1.2238254999992932,
+          "note": "Region map and working set sampled sequentially; not an atomic snapshot."
+        }
+      }
+    ],
+    "working_set_bytes": 4294942720,
+    "private_bytes": 833609728,
+    "page_fault_count": 46532136,
+    "process_read_bytes": 3644088,
+    "process_write_bytes": 589085,
+    "cpu_seconds": 576.671875,
+    "system_page_reads_per_sec": 7454.962542253015,
+    "system_pages_input_per_sec": 104737.13104290093,
+    "system_disk_read_bytes_per_sec": 428990708.94915813
+  },
+  "counter_errors": {}
+}

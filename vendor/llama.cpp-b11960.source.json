@@ -1,10 +1,10 @@
-﻿{
-    "project":  "ggml-org/llama.cpp",
-    "tag":  "b11960",
-    "source_url":  "https://github.com/ggml-org/llama.cpp/archive/refs/tags/b11960.zip",
-    "archive_sha256":  "27f982d6d170875e675b5fc4766977446c4356d13adf05ad3cdc7f6e67180482",
-    "source_directory":  "vendor/llama.cpp-b11960",
-    "verified_files":  3942,
-    "modifications":  "Local mmap prefetch control in src/llama-model.cpp; optional initialization pause/stage markers in common/common.cpp. See results findings.",
-    "license":  "MIT; see upstream LICENSE and licenses directory"
+{
+  "project": "ggml-org/llama.cpp",
+  "tag": "b11960",
+  "source_url": "https://github.com/ggml-org/llama.cpp/archive/refs/tags/b11960.zip",
+  "archive_sha256": "27f982d6d170875e675b5fc4766977446c4356d13adf05ad3cdc7f6e67180482",
+  "source_directory": "vendor/llama.cpp-b11960",
+  "verified_files": 3942,
+  "modifications": "Local mmap prefetch control; optional initialization diagnostics; exact standard KV/iSWA partial-removal capability query avoids startup decode probe while retaining unknown-cache fallback.",
+  "license": "MIT; see upstream LICENSE and licenses directory"
 }

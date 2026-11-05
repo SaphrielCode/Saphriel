@@ -1,101 +1,101 @@
-﻿{
-    "release":  "b11960",
-    "source_commit":  "8642541",
-    "configuration":  "Release",
-    "platform":  "Windows x64 CPU",
-    "compiler":  "MSVC 19.44.35229.0",
-    "cmake":  "4.4.4",
-    "cpu_features":  [
-                         "AVX2",
-                         "FMA",
-                         "F16C",
-                         "OpenMP"
-                     ],
-    "output":  "build/llama-cpu/bin/Release",
-    "build_exit_code":  0,
-    "checks":  {
-                   "cli_version":  0,
-                   "server_version":  0,
-                   "benchmark_help":  0,
-                   "quantizer_help":  1,
-                   "quantizer_help_exit_explained":  "Upstream usage() explicitly calls exit(1); help printed correctly."
-               },
-    "limitations":  [
-                        "No OpenSSL: built-in HTTPS unavailable",
-                        "Embedded web UI assets unavailable",
-                        "No model loading or inference tested"
-                    ],
-    "files":  [
-                  {
-                      "name":  "ggml-base.dll",
-                      "size_bytes":  678912,
-                      "sha256":  "30d340d27983cedf4065afcd527600a40839c71a1e92dc374c9e90eaf6d2adf4"
-                  },
-                  {
-                      "name":  "ggml-cpu.dll",
-                      "size_bytes":  1066496,
-                      "sha256":  "c5021d1f5ffa04f9ac84d0db272254a81fd3c0c720899dbbcf18de7b07e9caee"
-                  },
-                  {
-                      "name":  "ggml.dll",
-                      "size_bytes":  60928,
-                      "sha256":  "b8640824ee438bdf4589e97a5f5ef39ae21a6e794777075d06a37fa78b72472f"
-                  },
-                  {
-                      "name":  "llama-bench-impl.dll",
-                      "size_bytes":  909312,
-                      "sha256":  "8ab887296e4157791a2c06abdd2528fc9e377aa375726367b5a966100b173eac"
-                  },
-                  {
-                      "name":  "llama-bench.exe",
-                      "size_bytes":  10752,
-                      "sha256":  "0f56f5f0a018000e3081b229af56d88fd1ddbfe81ee1a62311d9f74b6f5f9ada"
-                  },
-                  {
-                      "name":  "llama-cli-impl.dll",
-                      "size_bytes":  850944,
-                      "sha256":  "053d0fe21205a7c6e98e87817c863896823ea99643ce296f57c7c6c4d618214a"
-                  },
-                  {
-                      "name":  "llama-cli.exe",
-                      "size_bytes":  10752,
-                      "sha256":  "4b194f0b5df01c19c0328ec71c4a114128bbdd26751673942318096f1be11aab"
-                  },
-                  {
-                      "name":  "llama-common.dll",
-                      "size_bytes":  8865792,
-                      "sha256":  "42734a20751d9726de81b9bed032d3ae67f4069bbc3d1772f353c8018fbc18f4"
-                  },
-                  {
-                      "name":  "llama-quantize-impl.dll",
-                      "size_bytes":  331776,
-                      "sha256":  "3503aeaea09034e67f519157598f3b5a4aa14b5365e4ccabfeffe4452ccdb357"
-                  },
-                  {
-                      "name":  "llama-quantize.exe",
-                      "size_bytes":  10752,
-                      "sha256":  "7cd6d559b13d379638de0e689e11008f5a469bba724d58cb7ee612d9f825499b"
-                  },
-                  {
-                      "name":  "llama-server-impl.dll",
-                      "size_bytes":  4111360,
-                      "sha256":  "cc92e5da2718c4a38b5cf1f96b1be9347b86b7f74e42dca96270907f3539cac6"
-                  },
-                  {
-                      "name":  "llama-server.exe",
-                      "size_bytes":  10752,
-                      "sha256":  "29b212ea28f6f366778bf97029d0ae477a1f6a564ac3a1a44ecde32d6134b845"
-                  },
-                  {
-                      "name":  "llama.dll",
-                      "size_bytes":  3097600,
-                      "sha256":  "1761c819d32296cd340f815e420f9d64ae90306f40e8d1de80cd54feca08571e"
-                  },
-                  {
-                      "name":  "mtmd.dll",
-                      "size_bytes":  2801152,
-                      "sha256":  "7adc6022d87b4382d735c57fe08ec70f7e095d730b8c171a5c218a512482c4fb"
-                  }
-              ],
-    "local_patch":  "LLAMA_MMAP_PREFETCH runtime control plus optional SAPHRIEL_INIT_STAGES diagnostic; upstream base b11960"
+{
+  "release": "b11960",
+  "source_commit": "8642541",
+  "configuration": "Release",
+  "platform": "Windows x64 CPU",
+  "compiler": "MSVC 19.44.35229.0",
+  "cmake": "4.4.4",
+  "cpu_features": [
+    "AVX2",
+    "FMA",
+    "F16C",
+    "OpenMP"
+  ],
+  "output": "build/llama-cpu/bin/Release",
+  "build_exit_code": 0,
+  "checks": {
+    "cli_version": 0,
+    "server_version": 0,
+    "benchmark_help": 0,
+    "quantizer_help": 1,
+    "quantizer_help_exit_explained": "Upstream usage() explicitly calls exit(1); help printed correctly."
+  },
+  "limitations": [
+    "No OpenSSL: built-in HTTPS unavailable",
+    "Embedded web UI assets unavailable",
+    "Real Olmo completed one short answer with 4 GiB resident cap in 245.322 seconds; heavily paging, not practical interactive speed."
+  ],
+  "files": [
+    {
+      "name": "ggml-base.dll",
+      "size_bytes": 678912,
+      "sha256": "30d340d27983cedf4065afcd527600a40839c71a1e92dc374c9e90eaf6d2adf4"
+    },
+    {
+      "name": "ggml-cpu.dll",
+      "size_bytes": 1066496,
+      "sha256": "c5021d1f5ffa04f9ac84d0db272254a81fd3c0c720899dbbcf18de7b07e9caee"
+    },
+    {
+      "name": "ggml.dll",
+      "size_bytes": 60928,
+      "sha256": "b8640824ee438bdf4589e97a5f5ef39ae21a6e794777075d06a37fa78b72472f"
+    },
+    {
+      "name": "llama-bench-impl.dll",
+      "size_bytes": 909312,
+      "sha256": "8ab887296e4157791a2c06abdd2528fc9e377aa375726367b5a966100b173eac"
+    },
+    {
+      "name": "llama-bench.exe",
+      "size_bytes": 10752,
+      "sha256": "0f56f5f0a018000e3081b229af56d88fd1ddbfe81ee1a62311d9f74b6f5f9ada"
+    },
+    {
+      "name": "llama-cli-impl.dll",
+      "size_bytes": 850944,
+      "sha256": "29f52c8a9e0b7501b3a4df79e750e87573d745dd0e8bd568d607276c5549a838"
+    },
+    {
+      "name": "llama-cli.exe",
+      "size_bytes": 10752,
+      "sha256": "b1b1edbaa73a19605dd2ace16a9224629155ae5f25b7df6c2fcf0756a1e75a94"
+    },
+    {
+      "name": "llama-common.dll",
+      "size_bytes": 8866304,
+      "sha256": "83c6e32c1475d3136df3322dd81beef2afa9a1ce2c8a68549b0eeac92250b6b0"
+    },
+    {
+      "name": "llama-quantize-impl.dll",
+      "size_bytes": 331776,
+      "sha256": "3503aeaea09034e67f519157598f3b5a4aa14b5365e4ccabfeffe4452ccdb357"
+    },
+    {
+      "name": "llama-quantize.exe",
+      "size_bytes": 10752,
+      "sha256": "7cd6d559b13d379638de0e689e11008f5a469bba724d58cb7ee612d9f825499b"
+    },
+    {
+      "name": "llama-server-impl.dll",
+      "size_bytes": 4111360,
+      "sha256": "f5ccd83fcb11b4c4fdcdef0034f8df7316642c36a14fb992ac1a20e353cf6006"
+    },
+    {
+      "name": "llama-server.exe",
+      "size_bytes": 10752,
+      "sha256": "5802c880b49ae95c1e2d943e5bf2002bd8777568bfefaf1340fed59325f1f195"
+    },
+    {
+      "name": "llama.dll",
+      "size_bytes": 3098112,
+      "sha256": "863e2b0c891fef3c9f49d4c4373650e1e0563ad139d8b2e9182ea22101f499b6"
+    },
+    {
+      "name": "mtmd.dll",
+      "size_bytes": 2801152,
+      "sha256": "307ea6f9fbad76eeaf0df81faac033153cbfa54568ab7ce11f12bd7ccb277e33"
+    }
+  ],
+  "local_patch": "Mmap prefetch control, initialization diagnostics, exact KV/iSWA removal capability query; upstream base b11960"
 }
