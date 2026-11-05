@@ -20,7 +20,6 @@
 #include <cmath>
 #include <chrono>
 #include <cstdarg>
-#include <cstdlib>
 #include <cstring>
 #include <ctime>
 #include <filesystem>
@@ -1294,19 +1293,6 @@ void common_fit_apply(common_params & params, llama_model_params & mparams, llam
         params.verbosity >= LOG_LEVEL_DEBUG ? GGML_LOG_LEVEL_DEBUG : GGML_LOG_LEVEL_ERROR);
 }
 
-// Saphriel diagnostic: isolate initialization without changing normal launches.
-static void common_init_stage(const char * stage, bool pause = false) {
-    const char * enabled = std::getenv("SAPHRIEL_INIT_STAGES");
-    if (!enabled || std::strcmp(enabled, "1") != 0) {
-        return;
-    }
-    COM_INF("SAPHRIEL_INIT_STAGE %s\n", stage);
-    if (pause) {
-        std::this_thread::sleep_for(std::chrono::seconds(5));
-        COM_INF("%s", "SAPHRIEL_INIT_STAGE pause_complete\n");
-    }
-}
-
 common_init_result::common_init_result(common_params & params, bool model_only) :
     pimpl(new impl{}) {
     auto mparams = common_model_params_to_llama(params);
@@ -1422,7 +1408,6 @@ common_init_result::common_init_result(common_params & params, bool model_only) 
     set_process_priority(params.cpuparams.priority);
 
     pimpl->threadpools.init(lctx, params);
-    common_init_stage("after_threadpool_pause_begin", true);
 }
 
 llama_model * common_init_result::model() {
@@ -1460,7 +1445,6 @@ static void common_batch_set_zero_state(common_batch & batch, const llama_model 
 
 common_init_result_ptr common_init_from_params(common_params & params, bool model_only) {
     common_init_result_ptr res(new common_init_result(params, model_only));
-    common_init_stage("constructor_returned");
 
     llama_model * model = res->model();
     if (model == NULL) {
@@ -1531,13 +1515,10 @@ common_init_result_ptr common_init_from_params(common_params & params, bool mode
     }
 
     if (!params.lora_init_without_apply) {
-        common_init_stage("before_adapters");
         common_set_adapter_lora(lctx, params.lora_adapters);
-        common_init_stage("after_adapters");
     }
 
     if (params.warmup) {
-        common_init_stage("before_warmup");
         COM_TRC("%s", "warming up the model with an empty run - please wait ... (--no-warmup to disable)\n");
 
         std::vector<llama_token> tmp;
@@ -1580,7 +1561,6 @@ common_init_result_ptr common_init_from_params(common_params & params, bool mode
         res->reset_samplers();
     }
 
-    common_init_stage("common_init_returned");
     return res;
 }
 
@@ -1616,7 +1596,6 @@ char * common_get_model_or_exit(int argc, char * argv[]) {
 }
 
 common_context_seq_rm_type common_context_can_seq_rm(llama_context * ctx) {
-    common_init_stage("sequence_removal_probe_entered");
     auto * mem = llama_get_memory(ctx);
     if (mem == nullptr) {
         return COMMON_CONTEXT_SEQ_RM_TYPE_NO;
@@ -1625,14 +1604,6 @@ common_context_seq_rm_type common_context_can_seq_rm(llama_context * ctx) {
     if (llama_n_rs_seq(ctx) > 0) {
         COM_TRC("%s", "the context supports bounded partial sequence removal\n");
         return COMMON_CONTEXT_SEQ_RM_TYPE_RS;
-    }
-
-    if (llama_memory_has_partial_seq_rm(mem)) {
-        COM_INF("%s", "partial sequence removal guaranteed by KV cache implementation; no decode probe\n");
-        common_init_stage("sequence_removal_exact_capability");
-        llama_memory_clear(mem, true);
-        llama_synchronize(ctx);
-        return COMMON_CONTEXT_SEQ_RM_TYPE_PART;
     }
 
     common_context_seq_rm_type res = COMMON_CONTEXT_SEQ_RM_TYPE_PART;
@@ -1649,9 +1620,7 @@ common_context_seq_rm_type common_context_can_seq_rm(llama_context * ctx) {
         common_batch batch = common_batch_get_one(ctx, tmp);
         std::vector<float> zeros;
         common_batch_set_zero_state(batch, llama_get_model(ctx), zeros);
-        common_init_stage("sequence_removal_probe_before_decode");
         ret = llama_process(ctx, LLAMA_PROCESS_TYPE_DECODE, batch.get());
-        common_init_stage("sequence_removal_probe_after_decode");
     }
     if (ret != 0) {
         COM_ERR("llama_process() failed: %d\n", ret);

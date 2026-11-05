@@ -119,10 +119,6 @@ LLAMA_API llama_memory_breakdown llama_get_memory_breakdown(const struct llama_c
 // the backend buffers that a state write of this memory would touch - empty caches report none
 LLAMA_API std::vector<ggml_backend_buffer_t> llama_memory_get_buffers(const llama_memory_t mem);
 
-// Saphriel: true only for exact cache implementations with unconditional partial removal.
-// False means unknown; callers must retain their existing capability probe.
-LLAMA_API bool llama_memory_has_partial_seq_rm(const llama_memory_t mem);
-
 // Turn the KV cache attention rotation on or off for the contexts created from this model.
 // Useful for testing purposes.
 LLAMA_API void llama_model_set_attn_rot(struct llama_model * model, bool value);

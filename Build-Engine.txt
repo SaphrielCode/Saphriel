@@ -10,17 +10,5 @@ Output: build/llama-cpu/bin/Release/
 Keep generated executables and DLLs together.
 The build selects AVX2, FMA, F16C and OpenMP for this Ryzen laptop.
 OpenSSL was not found; this build has no built-in HTTPS support. Local model loading is available.
-Source includes the local prefetch-control patch described below. Generated build artifacts are excluded from Git.
-The optional embedded web UI could not be downloaded during this build; the command-line tools and HTTP API were built.
-
-Local source patch: LLAMA_MMAP_PREFETCH=0 disables eager mapped-weight prefetch. Run-Olmo.cmd selects this by default. Set it to 1 explicitly to restore prefetch. Weights and numerical operations are unchanged.
-
-
-Diagnostic only: SAPHRIEL_INIT_STAGES=1 adds a fixed five-second post-threadpool pause and stage markers. Normal launch does not set it. The monitoring option --pause-init activates it for a bounded test.
-
-Startup patch: exact standard KV and iSWA cache types certify partial removal without decoding dummy tokens. Unknown types retain the original probe. This certifies removal semantics, not general inference readiness. Run-Olmo.cmd skips redundant warmup and uses templates/olmo3.1-chat.jinja, which preserves the embedded template and treats absent tools as none.
-Focused fixtures: python tools/make_cache_fixtures.py; configure tools/seq-removal-check with CMake and build Release. Both synthetic Llama and Olmo2/iSWA cache checks passed.
-Experimental bounded residency test: python tools/monitor_baseline.py --no-warmup --trace-loading --prefetch off --chat-template-file templates/olmo3.1-chat.jinja --working-set-gib 4
-The Windows quota API may require process quota privileges. No global memory settings are changed. A resident cap trades RAM for paging; it is not compression.
-
-Run-Olmo.cmd now uses Python to apply the tested process-local 4 GiB resident cap. SAPHRIEL_RESIDENT_GIB can explicitly select 1-8 GiB. The launcher stops the child if quota setup fails; it does not silently run uncapped. This limits physical residency, not model file size or virtual memory, and is applied shortly after process creation. It does not cap other programs or any future child processes. The current engine runs inference in the same process.
+Source is the original vendored llama.cpp b11960 engine. Generated build artifacts are excluded from Git.
+The optional embedded web UI was unavailable during the original build.

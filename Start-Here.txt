@@ -1,0 +1,32 @@
+SmolLM2-135M-Instruct experimentation workspace
+
+Interactive chat from PowerShell:
+  .\Run-SmolLM2.cmd
+
+One prompt:
+  .\Run-SmolLM2.cmd --prompt "Explain gravity briefly." --single-turn
+
+Local API (keep this terminal running):
+  .\Serve-SmolLM2.cmd
+In a second terminal:
+  python tools/chat.py "Explain gravity briefly."
+The server binds only to 127.0.0.1:8080. The API works without an embedded browser UI.
+
+Model: HuggingFaceTB/SmolLM2-135M-Instruct, FP16 GGUF conversion by bartowski.
+The file is 270,885,952 bytes. Pinned source revisions, checksum and license are in models/model.json.
+Original model card and configuration: models/reference/.
+The model weights are binary data; they are not Python code.
+Editable inference implementation: vendor/llama.cpp-b11960/src/models/llama.cpp.
+Other engine sources and GGUF conversion utilities remain in vendor/llama.cpp-b11960/.
+Rebuild instructions: Build-Engine.txt.
+
+Restore the model on another checkout:
+  python tools/download_smollm2.py
+The downloader uses Python's standard library and verifies the published size and SHA-256.
+The model file and compiled engine are local installations, excluded from Git.
+No PyTorch, CUDA, Transformers or Python package installation is needed for this llama.cpp CPU setup.
+This sets up inference experiments; training/fine-tuning would require a separate Python training stack.
+
+The context defaults to 2048 tokens and can be overridden with --ctx-size.
+The chat launcher defaults to at most 256 generated tokens per response; --predict overrides it.
+Small models can give incorrect answers; the smoke test verifies execution, not general answer quality.

@@ -1,2 +1,0 @@
-include src/olmo_core/data/mixes/*.txt
-include src/olmo_core/nn/_csrc/*.cpp

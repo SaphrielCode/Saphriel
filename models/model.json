@@ -1,10 +1,12 @@
 {
-  "repository": "lmstudio-community/Olmo-3.1-32B-Instruct-GGUF",
-  "revision": "14816572819f6a5a57f0151b60a6bcb9ebed2f59",
-  "filename": "Olmo-3.1-32B-Instruct-Q4_K_M.gguf",
-  "quantization": "Q4_K_M",
-  "size_bytes": 19482034976,
-  "sha256": "565f7092bbde56e98940547feab6a3947cc9cddf657e5d664c88bef05b9c90b0",
-  "license": "Apache-2.0",
-  "url": "https://huggingface.co/lmstudio-community/Olmo-3.1-32B-Instruct-GGUF/resolve/14816572819f6a5a57f0151b60a6bcb9ebed2f59/Olmo-3.1-32B-Instruct-Q4_K_M.gguf?download=true"
+  "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+  "original_revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+  "format": "FP16 GGUF",
+  "filename": "SmolLM2-135M-Instruct-f16.gguf",
+  "size_bytes": 270885952,
+  "sha256": "f535f83ec568d040f88ddc04a199fa6da90923bbb41d4dcaed02caa924d6ef57",
+  "gguf_repository": "bartowski/SmolLM2-135M-Instruct-GGUF",
+  "gguf_revision": "09816acd5d99df7be770d85ea30822623dab342c",
+  "url": "https://huggingface.co/bartowski/SmolLM2-135M-Instruct-GGUF/resolve/09816acd5d99df7be770d85ea30822623dab342c/SmolLM2-135M-Instruct-f16.gguf?download=true",
+  "license": "Apache-2.0"
 }

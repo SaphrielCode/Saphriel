@@ -5,6 +5,6 @@
   "archive_sha256": "27f982d6d170875e675b5fc4766977446c4356d13adf05ad3cdc7f6e67180482",
   "source_directory": "vendor/llama.cpp-b11960",
   "verified_files": 3942,
-  "modifications": "Local mmap prefetch control; optional initialization diagnostics; exact standard KV/iSWA partial-removal capability query avoids startup decode probe while retaining unknown-cache fallback.",
+  "modifications": "None; restored original vendored b11960 engine source.",
   "license": "MIT; see upstream LICENSE and licenses directory"
 }
