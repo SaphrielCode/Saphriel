@@ -1,0 +1,38 @@
+﻿{
+    "olmo_core":  {
+                      "repository":  "https://github.com/allenai/OLMo-core",
+                      "revision":  "ccf4ef4b5f6552e92f933589e9e6377d16fafb40",
+                      "archive_sha256":  "954c0296152f402d6798d48c239954d69e80806016660ed3f198a2dad6d646a5",
+                      "directory":  "vendor/olmo-core",
+                      "scope":  "Full upstream source snapshot, unmodified"
+                  },
+    "transformers":  {
+                         "repository":  "https://github.com/huggingface/transformers",
+                         "version":  "4.57.1",
+                         "revision":  "8cb5963cc22174954e7dca2c0a3320b7dc2f4edc",
+                         "directory":  "vendor/olmo3-transformers",
+                         "scope":  "Olmo3 model files and upstream license; reference excerpt requiring the Transformers package",
+                         "files":  [
+                                       {
+                                           "name":  "configuration_olmo3.py",
+                                           "sha256":  "fb245b588b07c704c47740aac9531aa490dc58a091a10c1366b014982de8257f"
+                                       },
+                                       {
+                                           "name":  "LICENSE",
+                                           "sha256":  "77fd4710def9ec3c0f6225800e0235f15a425abd4a8b03559127fcd782612049"
+                                       },
+                                       {
+                                           "name":  "modeling_olmo3.py",
+                                           "sha256":  "8d3ba411a89dbd3f703b24a117d03814de7952fdbd51a4cdf64186526f039464"
+                                       },
+                                       {
+                                           "name":  "modular_olmo3.py",
+                                           "sha256":  "0477b442310f7b36094beff90218b11ddaa8f25eb0d2adb27f5f7ded5bafb506"
+                                       },
+                                       {
+                                           "name":  "__init__.py",
+                                           "sha256":  "977e7f00ac693e68eb648a5e0f0da7000fc14f9f5f69f9558f1de65c0571f6ba"
+                                       }
+                                   ]
+                     }
+}
