@@ -5,6 +5,6 @@
     "archive_sha256":  "27f982d6d170875e675b5fc4766977446c4356d13adf05ad3cdc7f6e67180482",
     "source_directory":  "vendor/llama.cpp-b11960",
     "verified_files":  3942,
-    "modifications":  "Unmodified upstream source",
+    "modifications":  "Local mmap prefetch environment control in src/llama-model.cpp; see results/No-Prefetch-Findings.txt",
     "license":  "MIT; see upstream LICENSE and licenses directory"
 }

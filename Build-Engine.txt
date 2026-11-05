@@ -1,4 +1,4 @@
-llama.cpp b11960 - Windows x64 CPU Release build
+﻿llama.cpp b11960 - Windows x64 CPU Release build
 
 From the SaphrielCode repository in PowerShell:
 
@@ -10,5 +10,8 @@ Output: build/llama-cpu/bin/Release/
 Keep generated executables and DLLs together.
 The build selects AVX2, FMA, F16C and OpenMP for this Ryzen laptop.
 OpenSSL was not found; this build has no built-in HTTPS support. Local model loading is available.
-Upstream source is unchanged. Generated build artifacts are excluded from Git.
+Source includes the local prefetch-control patch described below. Generated build artifacts are excluded from Git.
 The optional embedded web UI could not be downloaded during this build; the command-line tools and HTTP API were built.
+
+Local source patch: LLAMA_MMAP_PREFETCH=0 disables eager mapped-weight prefetch. Run-Olmo.cmd selects this by default. Set it to 1 explicitly to restore prefetch. Weights and numerical operations are unchanged.
+

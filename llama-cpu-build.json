@@ -89,12 +89,13 @@
                   {
                       "name":  "llama.dll",
                       "size_bytes":  3097600,
-                      "sha256":  "71334514d9b4a66ddc3159425947533f886f1e73835e5436cd6725fb4e754d47"
+                      "sha256":  "1761c819d32296cd340f815e420f9d64ae90306f40e8d1de80cd54feca08571e"
                   },
                   {
                       "name":  "mtmd.dll",
                       "size_bytes":  2801152,
                       "sha256":  "7adc6022d87b4382d735c57fe08ec70f7e095d730b8c171a5c218a512482c4fb"
                   }
-              ]
+              ],
+    "local_patch":  "LLAMA_MMAP_PREFETCH runtime control; upstream base b11960"
 }

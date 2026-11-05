@@ -29,6 +29,7 @@
 #include <cassert>
 #include <cfloat>
 #include <cstdint>
+#include <cstdlib>
 #include <cstring>
 #include <cmath>
 #include <functional>
@@ -1905,7 +1906,14 @@ bool llama_model_base::load_tensors(llama_model_loader & ml) {
     // per-tensor activation precision policy
     prec_policy.load(ml, *this);
 
-    ml.init_mappings(true, use_mlock ? &pimpl->mlock_mmaps : nullptr);
+    // Saphriel: allow demand-paged loading on memory-constrained hosts.
+    const char * prefetch_env = std::getenv("LLAMA_MMAP_PREFETCH");
+    if (prefetch_env && std::strcmp(prefetch_env, "0") != 0 && std::strcmp(prefetch_env, "1") != 0) {
+        throw std::runtime_error("LLAMA_MMAP_PREFETCH must be 0 or 1");
+    }
+    const bool prefetch = !prefetch_env || std::strcmp(prefetch_env, "1") == 0;
+    LLAMA_LOG_INFO("%s: mapped model prefetch = %s\n", __func__, prefetch ? "enabled" : "disabled");
+    ml.init_mappings(prefetch, use_mlock ? &pimpl->mlock_mmaps : nullptr);
     pimpl->mappings.reserve(ml.mappings.size());
 
     // create the backend buffers

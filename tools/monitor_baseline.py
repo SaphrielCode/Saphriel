@@ -4,6 +4,7 @@ import argparse
 from ctypes import wintypes as wt
 import datetime
 import json
+import os
 from pathlib import Path
 import subprocess
 import time
@@ -17,12 +18,15 @@ repacking.add_argument("--repack", dest="no_repack", action="store_false", help=
 parser.set_defaults(no_repack=True)
 parser.add_argument("--no-warmup", action="store_true", help="Skip engine warmup for loading-stage diagnosis.")
 parser.add_argument("--trace-loading", action="store_true", help="Enable stage logs and read-only resident-page attribution.")
+parser.add_argument("--prefetch", choices=("on", "off"), default="off", help="Mapped-model prefetch control (default off) in the patched engine.")
 args = parser.parse_args()
 label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
 if args.no_warmup:
     label = "olmo_no_warmup_"
 if args.trace_loading:
     label = "olmo_loading_trace_"
+if args.prefetch == "off":
+    label = "olmo_no_prefetch_"
 OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
 OUT.mkdir(parents=True, exist_ok=False)
 kernel = ct.WinDLL("kernel32", use_last_error=True)
@@ -150,6 +154,7 @@ manifest = {"command": command, "model": model, "prior_model_verification": json
     "time_limit_seconds": 300, "low_available_ram_bytes": 512 * 1024 * 1024,
     "warmup": "disabled" if args.no_warmup else "engine default enabled", "weight_repacking": not args.no_repack,
     "resident_page_attribution": args.trace_loading, "initial_memory": system_memory(),
+    "mapped_model_prefetch": args.prefetch,
     "paging_scope": "System-wide counters include unrelated programs; process faults include soft faults.",
     "counter_errors": counter_errors, "process_scope": "Runner and all observed descendants; working-set sum can double-count shared pages.",
     "cache_state": "Uncontrolled Windows file cache; not claimed to be cold."}
@@ -161,7 +166,8 @@ samples = []
 low_count = 0
 monitor_error = None
 with (OUT / "stdout.txt").open("wb") as stdout, (OUT / "stderr.txt").open("wb") as stderr:
-    process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr)
+    environment = dict(os.environ, LLAMA_MMAP_PREFETCH="0" if args.prefetch == "off" else "1")
+    process = subprocess.Popen(command, cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, env=environment)
     def stop_tree():
         owned = descendants(process.pid)
         for pid in sorted(owned, key=lambda p: p == process.pid):
