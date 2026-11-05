@@ -1,5 +1,6 @@
 """One bounded Windows CPU baseline; standard library only."""
 import ctypes as ct
+import argparse
 from ctypes import wintypes as wt
 import datetime
 import json
@@ -8,7 +9,11 @@ import subprocess
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "results" / ("olmo_baseline_" + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
+parser = argparse.ArgumentParser()
+parser.add_argument("--no-repack", action="store_true", help="Disable the engine's CPU weight repacking for this comparison.")
+args = parser.parse_args()
+label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
+OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
 OUT.mkdir(parents=True, exist_ok=False)
 kernel = ct.WinDLL("kernel32", use_last_error=True)
 psapi = ct.WinDLL("psapi", use_last_error=True)
@@ -126,10 +131,12 @@ command = [str(ROOT / "build/llama-cpu/bin/Release/llama-cli.exe"),
            "--load-mode", "mmap", "--cache-type-k", "f16", "--cache-type-v", "f16",
            "--fit", "off", "--single-turn", "--simple-io", "--perf", "--verbosity", "3",
            "--log-colors", "off", "--prompt", prompt]
+if args.no_repack:
+    command.append("--no-repack")
 manifest = {"command": command, "model": model, "prior_model_verification": json.loads(
     (ROOT / "models/download-status.json").read_text(encoding="utf-8-sig")),
     "time_limit_seconds": 300, "low_available_ram_bytes": 512 * 1024 * 1024,
-    "warmup": "engine default enabled", "initial_memory": system_memory(),
+    "warmup": "engine default enabled", "weight_repacking": not args.no_repack, "initial_memory": system_memory(),
     "paging_scope": "System-wide counters include unrelated programs; process faults include soft faults.",
     "counter_errors": counter_errors, "process_scope": "Runner and all observed descendants; working-set sum can double-count shared pages.",
     "cache_state": "Uncontrolled Windows file cache; not claimed to be cold."}

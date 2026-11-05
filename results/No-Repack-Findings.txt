@@ -1,0 +1,12 @@
+﻿Olmo --no-repack comparison - 2026-11-04 America/New_York
+
+Result: avoids the original CPU_REPACK allocation failure, but does not establish usable inference on this laptop.
+Run: olmo_no_repack_20261105T014920Z. Same weights, prompt, 8 threads, 2048 context, batch/ubatch 128, f16 KV, mmap, default warmup, 128-token request. Only engine change: --no-repack. The monitor is the corrected version from the prior test.
+
+Stopped by available-RAM safeguard after 10.60 seconds; monitor_error null. Ten samples recorded. Peak sampled process-tree working set: 5,415,755,776 bytes (5.04 GiB). Peak sampled private bytes: 802,373,632 (765.20 MiB). Minimum available system RAM: 454,017,024 bytes (433 MiB). System-wide final sample: 9,958 page reads/sec, 122,768 pages input/sec and 502.9 MB/sec disk reads. These system counters include other applications and file-backed memory-map activity; they are not all pagefile traffic or exclusively Olmo.
+
+Engine reached threadpool initialization at approximately 3.59 seconds, without the prior 14,910,750,720-byte CPU_REPACK allocation error. No answer, completed prompt timing, or tokens/sec result was produced. The stop was our conservative available-memory guard, not an engine out-of-memory error. It does not prove the model cannot eventually generate if that guard were relaxed, nor that it would be acceptably fast.
+
+Private committed memory and resident working set are different measurements. The prior failed repack attempt sampled approximately 15.02 GB private bytes, but its interrupted peak and phase were not controlled. Do not interpret this as a measured percentage reduction in full-inference RAM. Cache state and background laptop usage were uncontrolled.
+
+Conclusion: --no-repack removes a concrete additional-allocation obstacle while preserving the weight file. It is a useful next setting, but practical inference remains unproven. No weights or engine code were altered, and no runtime default was changed. The existing memory safeguards were retained. The process exited after the safeguard; no inference was left running.
