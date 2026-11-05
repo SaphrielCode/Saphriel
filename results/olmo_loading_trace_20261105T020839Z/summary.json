@@ -1,0 +1,39 @@
+{
+  "stop_reason": "low_available_ram",
+  "exit_code": 1,
+  "monitor_error": null,
+  "wall_seconds": 8.6025367000002,
+  "sample_count": 6,
+  "peak_sampled_tree_working_set_bytes": 7113314304,
+  "peak_private_bytes": 802394112,
+  "minimum_available_ram_bytes": 24813568,
+  "last_sample": {
+    "elapsed_seconds": 7.709050800000114,
+    "available_ram_bytes": 24813568,
+    "total_ram_bytes": 14861852672,
+    "system_commit_bytes": 16961953792,
+    "processes": [
+      {
+        "pid": 29404,
+        "name": "llama-cli.exe",
+        "working_set_bytes": 7113314304,
+        "peak_working_set_bytes": 7113314304,
+        "private_bytes": 802394112,
+        "page_fault_count": 1836503,
+        "process_read_bytes": 3588096,
+        "process_write_bytes": 560769,
+        "cpu_seconds": 15.546875
+      }
+    ],
+    "working_set_bytes": 7113314304,
+    "private_bytes": 802394112,
+    "page_fault_count": 1836503,
+    "process_read_bytes": 3588096,
+    "process_write_bytes": 560769,
+    "cpu_seconds": 15.546875,
+    "system_page_reads_per_sec": 14325.3642294795,
+    "system_pages_input_per_sec": 165233.56997686822,
+    "system_disk_read_bytes_per_sec": 679597098.2659279
+  },
+  "counter_errors": {}
+}

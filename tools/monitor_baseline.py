@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import time
+from windows_residency import attribute_working_set
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
@@ -15,10 +16,13 @@ repacking.add_argument("--no-repack", dest="no_repack", action="store_true", hel
 repacking.add_argument("--repack", dest="no_repack", action="store_false", help="Explicitly enable repacking for a comparison.")
 parser.set_defaults(no_repack=True)
 parser.add_argument("--no-warmup", action="store_true", help="Skip engine warmup for loading-stage diagnosis.")
+parser.add_argument("--trace-loading", action="store_true", help="Enable stage logs and read-only resident-page attribution.")
 args = parser.parse_args()
 label = "olmo_no_repack_" if args.no_repack else "olmo_baseline_"
 if args.no_warmup:
     label = "olmo_no_warmup_"
+if args.trace_loading:
+    label = "olmo_loading_trace_"
 OUT = ROOT / "results" / (label + datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
 OUT.mkdir(parents=True, exist_ok=False)
 kernel = ct.WinDLL("kernel32", use_last_error=True)
@@ -135,7 +139,7 @@ command = [str(ROOT / "build/llama-cpu/bin/Release/llama-cli.exe"),
            "--threads-batch", "8", "--ctx-size", "2048", "--batch-size", "128",
            "--ubatch-size", "128", "--predict", "128", "--seed", "42", "--temp", "0",
            "--load-mode", "mmap", "--cache-type-k", "f16", "--cache-type-v", "f16",
-           "--fit", "off", "--single-turn", "--simple-io", "--perf", "--verbosity", "3",
+           "--fit", "off", "--single-turn", "--simple-io", "--perf", "--verbosity", "5" if args.trace_loading else "3",
            "--log-colors", "off", "--prompt", prompt]
 if args.no_repack:
     command.append("--no-repack")
@@ -144,7 +148,8 @@ if args.no_warmup:
 manifest = {"command": command, "model": model, "prior_model_verification": json.loads(
     (ROOT / "models/download-status.json").read_text(encoding="utf-8-sig")),
     "time_limit_seconds": 300, "low_available_ram_bytes": 512 * 1024 * 1024,
-    "warmup": "disabled" if args.no_warmup else "engine default enabled", "weight_repacking": not args.no_repack, "initial_memory": system_memory(),
+    "warmup": "disabled" if args.no_warmup else "engine default enabled", "weight_repacking": not args.no_repack,
+    "resident_page_attribution": args.trace_loading, "initial_memory": system_memory(),
     "paging_scope": "System-wide counters include unrelated programs; process faults include soft faults.",
     "counter_errors": counter_errors, "process_scope": "Runner and all observed descendants; working-set sum can double-count shared pages.",
     "cache_state": "Uncontrolled Windows file cache; not claimed to be cold."}
@@ -189,6 +194,8 @@ with (OUT / "stdout.txt").open("wb") as stdout, (OUT / "stderr.txt").open("wb") 
                         times = [wt.FILETIME() for _ in range(4)]
                         if kernel.GetProcessTimes(handle, *(ct.byref(t) for t in times)):
                             record["cpu_seconds"] = sum((t.dwHighDateTime << 32) + t.dwLowDateTime for t in times[2:]) / 1e7
+                        if args.trace_loading and sample["available_ram_bytes"] >= 128 * 1024 * 1024:
+                            record["residency"] = attribute_working_set(handle, model["filename"])
                     finally:
                         kernel.CloseHandle(handle)
                     sample["processes"].append(record)

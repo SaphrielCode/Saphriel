@@ -1,0 +1,17 @@
+﻿Olmo loading residency attribution - 2026-11-04 America/New_York
+
+Successful diagnostic: olmo_loading_trace_20261105T020839Z. Same no-repack, no-warmup, CPU-only settings as the prior test; added verbosity 5 and read-only Windows working-set/region attribution. No engine source, model source or weights changed. No default was changed.
+
+Stopped safely by low-available-RAM guard after 8.603 seconds. Six samples; monitor_error null. Peak sampled tree working set 7,113,314,304 bytes (6.63 GiB). Sampled private commitment max 802,394,112 bytes (765.22 MiB). Minimum available RAM 24,813,568 bytes (23.66 MiB); this abrupt fall triggered the immediate below-128-MiB stop. No answer or completed inference speed measurement. No llama process remained.
+
+Attribution snapshot beginning at 5.61 seconds: enumerated resident pages total 6,057,152,512 bytes. Model-file-backed resident pages 5,510,447,104 bytes (5.13 GiB; 90.97%); MEM_PRIVATE regions 542,625,792 bytes (517.49 MiB); image 4,055,040; other mapped 24,576; unknown zero. Region enumeration and working-set enumeration are sequential, not atomic; the earlier process RSS sample is therefore not identical to this later page total. Attribution took 1.084 seconds in this sample, adding diagnostic overhead and delaying the next available-RAM sample. At the final low-memory sample attribution was skipped by design. Do not treat these samples as a complete physical peak, or compare them as an optimization speed benchmark.
+
+Stage logs: model loading begins at 0.019 seconds; two CPU KV allocations total 512 MiB (128 + 384); compute graph reservation 54.01 MiB; threadpool initialization at 3.272 seconds; subsequent adapter setup. No explicit warmup or prompt-processing/readiness milestone was captured. Private commitment is separate from resident MEM_PRIVATE pages, not directly additive to resident model pages.
+
+Finding: resident mapped weight pages dominate the measured process working set; KV/compute buffers are appreciably smaller. This narrows the optimization target beyond the previous aggregate observations. It does not prove which call caused all file pages to become resident, nor establish a leak, a duplicate full weight copy, or model readiness.
+
+Source inspection: src/llama-model.cpp calls ml.init_mappings(true, ...); the Windows mmap implementation can call PrefetchVirtualMemory over the mapped model ranges. That is a plausible cause of eager file residency to isolate in a later test. This run did not instrument that API directly or disable it, so its causal contribution is not measured. Actual computation must also read needed weights even if prefetch is suppressed. Smaller context alone cannot remove the dominant mapped weight footprint.
+
+Read-only attribution uses QueryWorkingSet, VirtualQueryEx and GetMappedFileNameW; it does not read or lock target weight pages. Validation: own-process category totals matched enumerated working set; a touched 4 MiB temporary mapped-file fixture was correctly attributed as 4,194,304 model-file bytes. References: https://learn.microsoft.com/en-us/windows/win32/api/psapi/nf-psapi-queryworkingset and https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-psapi_working_set_block .
+
+Retained unsuccessful instrumentation preflight: olmo_loading_trace_20261105T020829Z; monitor hit a null-base-address handling error at 0.04 seconds and cleaned up the process. It is not a model result. The helper was fixed and validated before the successful diagnostic.
