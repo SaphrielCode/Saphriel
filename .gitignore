@@ -4,3 +4,4 @@ models/*.part
 models/download-status.json
 models/download.log
 models/download-errors.log
+/build/

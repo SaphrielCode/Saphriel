@@ -1,0 +1,14 @@
+llama.cpp b11960 - Windows x64 CPU Release build
+
+From the SaphrielCode repository in PowerShell:
+
+& 'C:\Program Files\CMake\bin\cmake.exe' -S vendor/llama.cpp-b11960 -B build/llama-cpu -G 'Visual Studio 17 2022' -A x64 -DLLAMA_BUILD_TESTS=OFF -DLLAMA_BUILD_EXAMPLES=OFF -DLLAMA_BUILD_APP=OFF -DLLAMA_BUILD_NUMBER=11960 -DLLAMA_BUILD_COMMIT=8642541
+
+& 'C:\Program Files\CMake\bin\cmake.exe' --build build/llama-cpu --config Release --parallel 2 --target llama-cli llama-server llama-bench llama-quantize
+
+Output: build/llama-cpu/bin/Release/
+Keep generated executables and DLLs together.
+The build selects AVX2, FMA, F16C and OpenMP for this Ryzen laptop.
+OpenSSL was not found; this build has no built-in HTTPS support. Local model loading is available.
+Upstream source is unchanged. Generated build artifacts are excluded from Git.
+The optional embedded web UI could not be downloaded during this build; the command-line tools and HTTP API were built.
