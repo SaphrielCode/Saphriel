@@ -3,3 +3,5 @@ models/*.gguf
 models/*.part
 __pycache__/
 *.pyc
+/training-assets/data/
+/.venv-data/

@@ -1,0 +1,34 @@
+[
+  {
+    "repo": "HuggingFaceFW/fineweb-edu",
+    "revision": "87f09149ef4734204d70ed1d046ddc9ca3f2b8f9",
+    "source_file": "data/CC-MAIN-2013-20/train-00000-of-00014.parquet",
+    "source_file_size": 2369456837,
+    "published_source_sha256": "fb989c566f6fba00ab61decc5f7aa1538a07d9b142e58a52ff790154528ffd03",
+    "path": "data\\pretraining-samples\\fineweb-edu.jsonl",
+    "records": 1000,
+    "bytes": 5247531,
+    "remote_bytes_read": 6263080,
+    "sha256": "1970dfa6106f15c13d8477bfee325e34a8825019c8ef59f5c03ea15206954859",
+    "selection": "First complete records of first source shard; at most 1000 records/25 MiB. Not random or representative.",
+    "limits": "Public-source sample, not verified as the exact filtered documents used in SmolLM2. Partial range reads cannot verify the full source-file digest; local sample digest recorded."
+  },
+  {
+    "repo": "mlfoundations/dclm-baseline-1.0",
+    "revision": "a3b142c183aebe5af344955ae20836eb34dcf69b",
+    "source_file": "global-shard_01_of_10/local-shard_0_of_10/shard_00000000_processed.jsonl.zst",
+    "source_file_size": 141306362,
+    "published_source_sha256": "c006fce0b12ea2366ed94503344c7bc539e17c0aa10159a632272dd6d2929bdb",
+    "path": "data\\pretraining-samples\\dclm-baseline-1.0.jsonl",
+    "records": 1000,
+    "bytes": 6824051,
+    "remote_bytes_read": 2490425,
+    "sha256": "80c2b2632538382917289d16ff98c670ed301fd4c0041c5c986fa3b198a63a7b",
+    "selection": "First complete records of first source shard; at most 1000 records/25 MiB. Not random or representative.",
+    "limits": "Public-source sample, not verified as the exact filtered documents used in SmolLM2. Partial range reads cannot verify the full source-file digest; local sample digest recorded."
+  },
+  {
+    "repo": "bigcode/the-stack",
+    "status": "not_downloaded_requires_user_access_approval"
+  }
+]

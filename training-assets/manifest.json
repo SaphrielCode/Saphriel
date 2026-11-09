@@ -1,0 +1,610 @@
+{
+  "snapshots": [
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "cd6db122f2fe64994a4f97cfd63428aeb07701ca",
+      "directory": "checkpoints/step-240000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "fe3a536b8fcd5efb1455f210cebee32ef3abfa57",
+          "size": 795
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "6d624ed3ec6772d1c279c8bc009662518b798e2a",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "9f87d85cd26011bd0c1b5f89abc53b359d6396e8c793e026768e0ad74c12c6df",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "3190c70fdde0b895a1a2f7a2f5e6f452b0b7f596",
+      "directory": "checkpoints/step-480000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "1f1736d960685841b38b13f54829502c34b3ac0b",
+          "size": 795
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "d202e922099da779091abe489aa1a839ecb7c514",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "7b792aee936a20b6f3a310a6cd16820169f46a77334a99c33389281de03c961f",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "4b66cd7322bd2fb9b263f9825821b221370664bf",
+      "directory": "checkpoints/step-720000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "bf35fa0f8f639153e8a6972935ad6711a6b20999",
+          "size": 795
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "2803c40453cbfa102749f2f51eb269784c9402c3",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "aad11fa87e93eb79b6c54de5d43f34381b074fc4c03220239af61c428321e1ba",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "2d0ad661c9ea1dc2dfd01b54797fe4b097981cb4",
+      "directory": "checkpoints/step-960000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "8227d6696cbeb810d0b7f5819fadfcfe12428a32",
+          "size": 795
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "978cf7afe3d7fa0f7e625f2c1d3f881d04670b38",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "0225136391c18a015b53a01d3356fe5c7ab51c278a6dec3330ca3645ca2d17a1",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "365e069c459ebfd503fa6e1b7a491ca23a0e1d2b",
+      "directory": "checkpoints/step-1200000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "2dd7b39ccb7869c156196efce7df2c301c984243",
+          "size": 796
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "2b7f855f666982644bb76f73a5dcfd1a595b3568",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "5f9b3446a70288c4aab6ecc2fc06aeff3427aadddb8714ddfc5d6297a6ba94cd",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "7d524e6e0203ec6caf26212aa04545791720a7f5",
+      "directory": "checkpoints/step-1440000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "fc8e679f2fd07777d6303d573497d6534ed342c8",
+          "size": 796
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "2fbc5fe85e2f59a4a19600153a2ae346f2e7918f",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "20eeb2a0b5b8ee5227938c013853f0e0ab2dc51177c9285625e8e61c57fd5223",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "0358168bedba488ef105b46bcab4fba876bc4d08",
+      "directory": "checkpoints/step-1680000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "24d3708d3c4721f8514de1a524f1ee63085cb3de",
+          "size": 796
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "3a2c65775641cabe198e7ea37279824f72a481d0",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "a1228783f240c36345ad5054a8574d1148350feb9786aaf2afb7dd8c76a33f47",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "models",
+      "repo": "HuggingFaceTB/SmolLM2-135M-intermediate-checkpoints",
+      "revision": "7b33576aa44871e16089e3eb7b108639f3cd6f7d",
+      "directory": "checkpoints/step-1920000",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "bc5f30d6632ac0efdc7be2e9095e9e9579af2e33",
+          "size": 5174
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "44bca62c00624b4cf40db851711aeac508681b33",
+          "size": 796
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "b5891d51d7933eec942b6415616d32fb8ce52ab0",
+          "size": 111
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "69503b13f727ba3812b6803e97442a6de05ef5eb",
+          "size": 466391
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "7c78afb8efad1d7fa8488d503ae84a131d1eeed4",
+          "size": 269060552,
+          "lfs": {
+            "sha256": "3a79036f8ee4f37a1f4af209ff9556e1e260ba7d465f9c8959b2f776a18f4730",
+            "size": 269060552,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "f6652f246cb895ca1edfb16d10b57917b266e335",
+          "size": 831
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "f922b1797f0c88e71addc8393787831f2477a4bd",
+          "size": 2104556
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ac45355efc11170d53596f7486c98cd595e2082c",
+          "size": 3907
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "0ad5ecc2035b7031b88afb544ee95e2d49baa484",
+          "size": 800662
+        }
+      ]
+    },
+    {
+      "kind": "datasets",
+      "repo": "HuggingFaceTB/smol-smoltalk",
+      "revision": "f73fe857d519ff6ac5af2ea67c4d3834da7b8bcc",
+      "directory": "datasets/smol-smoltalk",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "42b88b83e018ec7fd021b148d2eeaaa7c3c00931",
+          "size": 2239
+        },
+        {
+          "rfilename": "data/test-00000-of-00001.parquet",
+          "blobId": "0b01f324f2afc3e12fa786455be9ab015462ddab",
+          "size": 48177022,
+          "lfs": {
+            "sha256": "be6773dcce145f3918ff14237b1f765affa427b0b13f6a02d397e665ac908b9a",
+            "size": 48177022,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "data/train-00000-of-00004.parquet",
+          "blobId": "c636aa893e0f213f617604fb94ef878691d3b0e0",
+          "size": 229710350,
+          "lfs": {
+            "sha256": "498cd4580014f42c40cfde066573564ed28e3e1548a5566715b615f5ea932856",
+            "size": 229710350,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00001-of-00004.parquet",
+          "blobId": "fa0b381824f0499efebe424984fb1ef68b02047a",
+          "size": 230298184,
+          "lfs": {
+            "sha256": "5412c03df579fc7dd7d06c7f5249627d99d0621882fb8f2cd5c13582eb2a80f6",
+            "size": 230298184,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00002-of-00004.parquet",
+          "blobId": "ce514a3b2fc18ee2d47931c4176246cda65f1bca",
+          "size": 230587255,
+          "lfs": {
+            "sha256": "aefcac6571abf275b4e1629baa01f326c0fe279d35cd0349b7439319923815a7",
+            "size": 230587255,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00003-of-00004.parquet",
+          "blobId": "d6cf3ac9f3fd255836927de0b5d08dc9f4e375c1",
+          "size": 231879938,
+          "lfs": {
+            "sha256": "c15edfca888c9924a626dad7b7f4e9f08d8f406f997ac13be46bc9be0a6192db",
+            "size": 231879938,
+            "pointerSize": 134
+          }
+        }
+      ]
+    },
+    {
+      "kind": "datasets",
+      "repo": "HuggingFaceH4/ultrafeedback_binarized",
+      "revision": "3949bf5f8c17c394422ccfab0c31ea9c20bdeb85",
+      "directory": "datasets/ultrafeedback_binarized",
+      "files": [
+        {
+          "rfilename": "README.md",
+          "blobId": "d935fe2718dd5da429fc82a9c9ecad7cee4b72a9",
+          "size": 6529
+        },
+        {
+          "rfilename": "create_dataset.py",
+          "blobId": "3c601611a117cdf83ad75acfa74bfd7d51c25257",
+          "size": 4264
+        },
+        {
+          "rfilename": "data/test_gen-00000-of-00001.parquet",
+          "blobId": "5e4644da498d527176a4484a0f321eb0976b3c8c",
+          "size": 3022752,
+          "lfs": {
+            "sha256": "e9cb46caa2348fa6c0577c1e4fa4da6f07cb6672d0b686db34db504817cc5562",
+            "size": 3022752,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "data/test_prefs-00000-of-00001.parquet",
+          "blobId": "a8c2a63169d1a9a5f8e1ca5986057ee7ccff77ed",
+          "size": 7291160,
+          "lfs": {
+            "sha256": "e9dab2789f419d4204d73ec2c860af6d88d466b906e0109e69b96075467eb389",
+            "size": 7291160,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "data/test_sft-00000-of-00001.parquet",
+          "blobId": "7a8d31a1b2c888592a00b5859332ad78c532ca70",
+          "size": 3719085,
+          "lfs": {
+            "sha256": "f54e1c8df3d3831b6b70711fcd9225931da12964b73f33fe99317b4ebe5d7e09",
+            "size": 3719085,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "data/train_gen-00000-of-00001.parquet",
+          "blobId": "81949942273bd85da7cc91775bd659c98efb364c",
+          "size": 184150527,
+          "lfs": {
+            "sha256": "afce818aa1a58ef451aeec396251ac4e7c8c2e6c5f9649cf9106f62eb6368fcc",
+            "size": 184150527,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train_prefs-00000-of-00001.parquet",
+          "blobId": "a4e2692edba7986160d54c06a04046548b7dc3e0",
+          "size": 225891836,
+          "lfs": {
+            "sha256": "0f951ca4502001d31f3e4c70716ae51d20e4ce4f847d12b6a6695a40d4d353a8",
+            "size": 225891836,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train_sft-00000-of-00001.parquet",
+          "blobId": "a4e2692edba7986160d54c06a04046548b7dc3e0",
+          "size": 225891836,
+          "lfs": {
+            "sha256": "0f951ca4502001d31f3e4c70716ae51d20e4ce4f847d12b6a6695a40d4d353a8",
+            "size": 225891836,
+            "pointerSize": 134
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "All published step branches and both full instruction-training dataset repositories. Not the full pretraining corpus; not optimizer/RNG state."
+}
